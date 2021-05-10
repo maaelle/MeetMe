@@ -9,7 +9,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -21,37 +20,37 @@ class InscriptionActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-    private lateinit var Email: EditText
-    private lateinit var Password : EditText
-    private lateinit var Name : EditText
-    private var TAG = "mon appli"
+    private lateinit var tvEmail: EditText
+    private lateinit var tvpPassword: EditText
+    private lateinit var tvName: EditText
+    private var TAG = "InscriptionActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inscription)
 
+        tvEmail = findViewById(R.id.editEmail)
+        tvpPassword = findViewById(R.id.editPassword)
+        tvName = findViewById(R.id.editName)
+
         auth = Firebase.auth
         database = Firebase.database.reference
 
-
-        val create : Button = findViewById(R.id.create)
-        create.setOnClickListener{inscrire()}
+        findViewById<Button>(R.id.create).setOnClickListener { signUp() }
     }
 
-    fun inscrire(){
+    private fun signUp() {
+        val email = tvEmail.text.toString()
+        val password = tvpPassword.text.toString()
 
-        Email = findViewById(R.id.editEmail)
-        Password = findViewById(R.id.editPassword)
-        Name = findViewById(R.id.editName)
-        val email = Email.toString()
-        val password = Password.toString()
-
-        if (TextUtils.isEmpty(email)){
-            Email.error = "Email is required"
+        if (TextUtils.isEmpty(email)) {
+            this.tvEmail.error = "Email is required"
+            return
         }
 
-        if (TextUtils.isEmpty(password)){
-            Password.error = "Password is required"
+        if (TextUtils.isEmpty(password)) {
+            this.tvpPassword.error = "Password is required"
+            return
         }
 
         auth.createUserWithEmailAndPassword(email, password)
@@ -64,8 +63,10 @@ class InscriptionActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed : ${task.exception}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -76,20 +77,20 @@ class InscriptionActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             reload()
         }
     }
 
     private fun reload() {
-        auth.currentUser.reload()
-            .addOnCompleteListener(OnCompleteListener<Void?> { task ->
+        auth.currentUser?.reload()
+            ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     updateUI(auth.currentUser)
                 } else {
                     Log.e(TAG, "reload", task.exception)
                 }
-            })
+            }
     }
 
 
@@ -97,14 +98,14 @@ class InscriptionActivity : AppCompatActivity() {
         val intent8 = Intent(this, CompteActivity::class.java)
         startActivity(intent8)
 
-        val identifiant=auth.currentUser.uid
-        val email = Email.toString()
-        val name = Name.toString()
+        val identifiant = auth.currentUser.uid
+        val email = tvEmail.toString()
+        val name = tvName.toString()
 
-        writeNewUser(identifiant, email, name )
+        writeNewUser(identifiant, email, name)
     }
 
-    fun writeNewUser(userId: String, email: String, name: String) {
+    private fun writeNewUser(userId: String, email: String, name: String) {
 
         val user = Utilisateur(userId, email, name)
         database.child("users").child(userId).setValue(user)
