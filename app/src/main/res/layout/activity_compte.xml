@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CFDEE3"
+    android:backgroundTint="#CFDEE3"
+    tools:context=".CompteActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutText"
+        android:layout_width="410dp"
+        android:layout_height="300dp"
+        android:background="#87FFF6"
+        android:orientation="vertical"
+        android:translationX="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearFavorite">
+
+        <TextView
+            android:id="@+id/descritpion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Descritpion"
+            android:textColor="#070000"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <TextView
+            android:id="@+id/start_description"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Give a short description of you (serious or funny)"
+            android:textColor="#B6B6B6"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/citation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Citation"
+            android:textColor="#070000"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <TextView
+            android:id="@+id/start_citation"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:freezesText="false"
+            android:text="A citation that represent your vision of life"
+            android:textColor="#B6B6B6"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/hobbies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Hobbies"
+            android:textColor="#070000"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <TextView
+            android:id="@+id/start_hobbies"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="Explain us what you love in the life, cooking, reading, listening music, sport, goint out with friends..."
+            android:textColor="#B6B6B6"
+            tools:layout_editor_absoluteX="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="215dp"
+        android:layout_height="105dp"
+        android:id="@+id/layoutIdentity"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Photo"
+        tools:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brendan Moore"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(30)"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/profession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CEO of MeetMe"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/localisation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="London, UK"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Photo"
+        android:layout_width="157dp"
+        android:layout_height="149dp"
+        android:clickable="false"
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearFavorite"
+        android:layout_width="412dp"
+        android:layout_height="174dp"
+        android:background="#8DBFCF"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:translationX="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutIdentity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="97dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/musicbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#C0CCDA"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_baseline_music_note_24" />
+
+            <LinearLayout
+                android:layout_width="114dp"
+                android:layout_height="53dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/musique"
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Title of musique"
+                    android:textColor="#0E0D0D" />
+
+                <TextView
+                    android:id="@+id/musiqueauthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Author" />
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/bookbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#C0CCDA"
+                android:clickable="false"
+                app:rippleColor="#C0CCDA"
+                app:srcCompat="@drawable/ic_baseline_book_24" />
+
+            <LinearLayout
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/book"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:text="Title of Book"
+                    android:textColor="#0E0303" />
+
+                <TextView
+                    android:id="@+id/bookauthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Author" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/sportbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#C0CCDA"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_baseline_sports_tennis_24" />
+
+            <TextView
+                android:id="@+id/sport"
+                android:layout_width="155dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Favorite sport"
+                android:textColor="#070707" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/foodbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#C0CCDA"
+                android:clickable="false"
+                app:srcCompat="@drawable/ic_baseline_fastfood_24" />
+
+            <TextView
+                android:id="@+id/food"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Favorite dishes"
+                android:textColor="#040404" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/returnbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#CFDEE3"
+        android:tint="#0B0A0A"
+        app:srcCompat="@drawable/abc_vector_test"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="29dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/modifybutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0C6ED1"
+        android:clickable="true"
+        android:src="@drawable/ic_baseline_mode_edit_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="350dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
