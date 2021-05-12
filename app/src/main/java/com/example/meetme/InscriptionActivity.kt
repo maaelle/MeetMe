@@ -9,10 +9,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.meetme.Constants.Companion.DB_URL
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth as auth
 
@@ -34,7 +35,7 @@ class InscriptionActivity : AppCompatActivity() {
         tvName = findViewById(R.id.editName)
 
         auth = Firebase.auth
-        database = Firebase.database.reference
+        database = FirebaseDatabase.getInstance(DB_URL).reference
 
         findViewById<Button>(R.id.create).setOnClickListener { signUp() }
     }
@@ -95,19 +96,25 @@ class InscriptionActivity : AppCompatActivity() {
 
 
     private fun updateUI(user: FirebaseUser?) {
-        val intent8 = Intent(this, CompteActivity::class.java)
-        startActivity(intent8)
+        val email = tvEmail.text.toString()
+        val name = tvName.text.toString()
 
-        val identifiant = auth.currentUser.uid
-        val email = tvEmail.toString()
-        val name = tvName.toString()
-
-        writeNewUser(identifiant, email, name)
+        user?.uid?.let { uidUser ->
+            //un ?.let {} is like a  if uid != null
+            writeNewUser(uidUser, email, name)
+        }
     }
 
     private fun writeNewUser(userId: String, email: String, name: String) {
-
         val user = Utilisateur(userId, email, name)
-        database.child("users").child(userId).setValue(user)
+        database.child("users").child(userId).setValue(user).addOnSuccessListener {
+            Log.i(TAG, "Success !")
+            val intent8 = Intent(this, CompteActivity::class.java)
+            startActivity(intent8)
+        }.addOnCanceledListener {
+            Log.e(TAG, "Request canceled")
+        }.addOnFailureListener {
+            Log.e(TAG, "Something went wrong", it)
+        }
     }
 }
