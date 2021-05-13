@@ -45,8 +45,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun connecter(){
-        val email = EmailConnect.toString()
-        val password = PasswordConnect.toString()
+        val email = EmailConnect.text.toString()
+        val password = PasswordConnect.text.toString()
 
         if (TextUtils.isEmpty(email)){
             EmailConnect.error = "Email is required"
@@ -69,7 +69,6 @@ class LoginActivity : AppCompatActivity() {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
             }
 

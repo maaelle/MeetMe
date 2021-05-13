@@ -9,10 +9,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.meetme.Constant.Companion.DB_URL
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth as auth
 
@@ -34,7 +35,7 @@ class InscriptionActivity : AppCompatActivity() {
         tvName = findViewById(R.id.editName)
 
         auth = Firebase.auth
-        database = Firebase.database.reference
+        database = FirebaseDatabase.getInstance(DB_URL).reference
 
         findViewById<Button>(R.id.create).setOnClickListener { signUp() }
     }
@@ -98,16 +99,40 @@ class InscriptionActivity : AppCompatActivity() {
         val intent8 = Intent(this, CompteActivity::class.java)
         startActivity(intent8)
 
-        val identifiant = auth.currentUser.uid
-        val email = tvEmail.toString()
-        val name = tvName.toString()
+        val name = tvName.text.toString()
+        val age = ""
+        val profession =""
+        val localisation = ""
+        val book= ""
+        val bookauthor = ""
+        val music = ""
+        val musicauthor = ""
+        val sport = ""
+        val dishes = ""
+        val hobbies = ""
+        val citation = ""
+        val description = ""
 
-        writeNewUser(identifiant, email, name)
+        user?.uid?.let { id ->
+            //un ?.let {} is like a  if uid != null
+            writeNewUser(name,id, age, profession, localisation, book, bookauthor, music, musicauthor,sport, dishes, hobbies, citation, description )
+        }
+
+
     }
 
-    private fun writeNewUser(userId: String, email: String, name: String) {
+    private fun writeNewUser( name: String, id: String, age: String, profession: String, localisation: String, book: String, bookauthor: String, music: String, musicauthor: String, sport: String, dishes: String, hobbies: String, citation: String, description: String) {
 
-        val user = Utilisateur(userId, email, name)
-        database.child("users").child(userId).setValue(user)
+        val user=Utilisateur(name,age,profession,localisation,book,bookauthor,music,musicauthor,sport,dishes,hobbies,citation,description)
+
+        database.child("users").child(id).setValue(user).addOnSuccessListener {
+            Log.i(TAG,"Success !")
+            val intent8=Intent(this,CompteActivity::class.java)
+            startActivity(intent8)
+        }.addOnCanceledListener {
+            Log.e(TAG,"Request canceled")
+        }.addOnFailureListener {
+            Log.e(TAG,"Something went wrong",it)
+        }
     }
 }

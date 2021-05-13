@@ -1,18 +1,26 @@
 package com.example.meetme
 
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.example.meetme.Constant.Companion.DB_URL
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 
@@ -20,66 +28,58 @@ import kotlin.collections.ArrayList
 class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+
+    private val TAG = "ok"
+
     private val adapter = ConversationAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         auth = Firebase.auth
+        database = FirebaseDatabase.getInstance(DB_URL).reference
+
+        val compte : FloatingActionButton = findViewById(R.id.compte)
+        compte.setOnClickListener{retournecompte()}
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val proposal : List<Utilisateur> = dataSnapshot.getValue() as List<Utilisateur>
+                if (proposal != null) {
+                    populateRecycler(proposal)
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        database.addValueEventListener(postListener)
         setContentView(R.layout.activity_choice)
 
         setUpRecyclerView()
 
         // C'est ici que je dois faire appel à firebase
-        populateRecycler()
+
 
     }
 
-
+    private fun retournecompte(){
+        val intcompte = Intent(this, CompteActivity::class.java)
+        startActivity(intcompte)
+    }
 
     private fun setUpRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
         recyclerView.adapter = adapter
     }
-    private fun populateRecycler() {
+    private fun populateRecycler(proposal: List<Utilisateur>) {
         // ici on récupère dans la base de données un utilisateur à afficher.
-        val pretendant = getRandomList()
-        adapter.setData(pretendant)
+        adapter.setData(proposal)
     }
-    private fun getRandomList(): ArrayList<Utilisateur> {
-        val pretendant = arrayListOf<Utilisateur>()
-        val userPicture = "https://picsum.photos/200"
-        for (i in 0..100) {
-            val name = "${getName()} ${getName()}"
-            val age = "0${List(8) { ('0'..'9').random() }.joinToString("")}"
-            val profession = "${getProfession()} ${getProfession()}"
-            val localisation = "${getLocalisation()} ${getLocalisation()}"
-            val music = "${getMusic()} ${getMusic()}"
-            val musicauthor = "${getMusicAuthor()} ${getMusicAuthor()}"
-            val book = "${getBook()} ${getBook()}"
-            val bookauthor = "${getBookAuthor()} ${getBookAuthor()}"
-            val sport = "${getSport()} ${getSport()}"
-            val sportlevel = "${getSportLevel()} ${getSportLevel()}"
-            val dishes = "${getDishes()} ${getDishes()}"
-            val citation = "${getCitation()} ${getCitation()}"
-            val description = "${getDescription()} ${getDescription()}"
-            pretendant.add(Utilisateur(name, age, profession, localisation, music, musicauthor, book, bookauthor, sport, sportlevel, dishes, citation, description, userPicture))
-        }
-        return pretendant
-    }
-    private fun getName() = List(6) { ('a'..'z').random() }.joinToString("")
-    private fun getProfession() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getLocalisation() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getMusic() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getMusicAuthor() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getBook() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getBookAuthor() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getSport() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getSportLevel() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getDishes() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getCitation() = List(20) { ('a'..'z').random() }.joinToString("")
-    private fun getDescription() = List(20) { ('a'..'z').random() }.joinToString("")
-
 
     override fun onUserClicked(utilisateur: Utilisateur) {
         Toast.makeText(this, "You cliked on : ${utilisateur.name}", Toast.LENGTH_LONG).show()
@@ -92,8 +92,8 @@ interface ConversationAdapterListener{
 }
 
 class ConversationAdapter(private val listener: ChoiceActivity) : RecyclerView.Adapter<ConversationAdapter.ViewHolder>() {
-    private var data: ArrayList<Utilisateur> = ArrayList()
-    fun setData(data: ArrayList<Utilisateur>) {
+    private var data: List<Utilisateur> = arrayListOf()
+    fun setData(data: List<Utilisateur>) {
         this.data = data
         notifyDataSetChanged()
     }
@@ -122,7 +122,6 @@ class ConversationAdapter(private val listener: ChoiceActivity) : RecyclerView.A
         holder.localisationliste.text = pretendant.localisation?.capitalize(Locale.getDefault())
         holder.citationliste.text = pretendant.citation?.capitalize(Locale.getDefault())
         holder.descriptionliste.text = pretendant.description?.capitalize(Locale.getDefault())
-        //holder.imgUserProfile.load(contact.userPicture)
         holder.itemView.setOnClickListener { listener.onUserClicked(pretendant) }
     }
     override fun getItemCount(): Int {
