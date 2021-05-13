@@ -22,127 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/SelectNom"
-        android:layout_width="238dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlemod">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="242dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="NAME" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <EditText
-        android:id="@+id/SelectAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="3"
-        android:hint="AGE"
-        android:inputType="number"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/SelectNom"
-        app:layout_constraintTop_toBottomOf="@+id/titlemod" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/SelectBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ville">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="FAVORITE BOOK" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/BookAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SelectBook">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Select"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="BOOK AUTHOR" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/SelectMusic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookAuthor">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="FAVORITE MUSIC" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/MusicAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SelectMusic">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="MUSIC AUTHOR" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/SelectFood"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MusicAuthor">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="FAVORITE FOOD" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/SelectSport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SelectFood">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="FAVORITE SPORT" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/next"
@@ -154,39 +34,133 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SelectSport" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/SelectNom"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:hint="Name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/SelectAge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titlemod" />
+
+    <EditText
+        android:id="@+id/SelectAge"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:hint="Age"
+        android:textSize="16sp"
+        android:layout_marginTop="30dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/SelectNom"
+        app:layout_constraintTop_toBottomOf="@id/titlemod" />
+
+    <EditText
         android:id="@+id/job"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Profession"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SelectNom">
+        app:layout_constraintTop_toBottomOf="@id/SelectNom" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Job" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+    <EditText
         android:id="@+id/ville"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="211dp"
-        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Localisation"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/job">
+        app:layout_constraintTop_toBottomOf="@id/job" />
 
-        <com.google.android.material.textfield.TextInputEditText
+    <EditText
+        android:id="@+id/SelectBook"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Book"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ville" />
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ville" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:id="@+id/BookAuthor"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Book's Author"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SelectBook" />
 
+    <EditText
+        android:id="@+id/SelectMusic"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Music"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/BookAuthor" />
+
+    <EditText
+        android:id="@+id/MusicAuthor"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Music's Author"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SelectMusic" />
+
+    <EditText
+        android:id="@+id/SelectFood"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Favorite food"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MusicAuthor" />
+
+    <EditText
+        android:id="@+id/SelectSport"
+        android:layout_width="400dp"
+        android:layout_height="40dp"
+        android:hint="Sport"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        tools:layout_editor_absoluteX="276dp"
+        tools:layout_editor_absoluteY="135dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SelectFood" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

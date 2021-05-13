@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import com.google.android.material.textfield.TextInputEditText
+import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.example.meetme.Constant.Companion.DB_URL
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class ModifyActivity : AppCompatActivity() {
@@ -18,23 +18,26 @@ class ModifyActivity : AppCompatActivity() {
     private lateinit var database : DatabaseReference
     private lateinit var auth : FirebaseAuth
 
-    private lateinit var name : TextInputEditText
-    private lateinit var age : TextInputEditText
-    private lateinit var profession : TextInputEditText
-    private lateinit var localisation : TextInputEditText
-    private lateinit var music : TextInputEditText
-    private lateinit var musicauthor : TextInputEditText
-    private lateinit var book : TextInputEditText
-    private lateinit var bookauthor : TextInputEditText
-    private lateinit var sport : TextInputEditText
-    private lateinit var food : TextInputEditText
+    private lateinit var name : EditText
+    private lateinit var age : EditText
+    private lateinit var profession : EditText
+    private lateinit var localisation : EditText
+    private lateinit var music : EditText
+    private lateinit var musicauthor : EditText
+    private lateinit var book : EditText
+    private lateinit var bookauthor : EditText
+    private lateinit var sport : EditText
+    private lateinit var food : EditText
+
+    private val TAG = "ça marche"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify)
 
-        database = FirebaseDatabase.getInstance(DB_URL).reference
         auth = Firebase.auth
+        database = FirebaseDatabase.getInstance(DB_URL).reference
+
 
         name = findViewById(R.id.SelectNom)
         age = findViewById(R.id.SelectAge)
@@ -64,21 +67,28 @@ class ModifyActivity : AppCompatActivity() {
 
         val userId = auth.currentUser.uid
 
-        val namedata = database.child("users").child(userId).get().result
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val post = dataSnapshot.getValue<Utilisateur>()
+                name.setText(post?.name)
+                age.setText(post?.age)
+                profession.setText(post?.profession)
+                localisation.setText(post?.localisation)
+                music.setText(post?.music)
+                musicauthor.setText(post?.musicauthor)
+                book.setText(post?.book)
+                bookauthor.setText(post?.bookauthor)
+                sport.setText(post?.sport)
+                food.setText(post?.dishes)
+            }
 
-        val user : Utilisateur
-        user =namedata?.value as Utilisateur
-
-        name.setText(user.name)
-        age.setText(user.age)
-        profession.setText(user.profession)
-        localisation.setText(user.localisation)
-        music.setText(user.music)
-        musicauthor.setText(user.musicauthor)
-        book.setText(user.book)
-        bookauthor.setText(user.bookauthor)
-        sport.setText(user.sport)
-        food.setText(user.dishes)
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        database.child("users").child(userId).addValueEventListener(postListener)
     }
 
     private fun miseajour(){
@@ -97,23 +107,17 @@ class ModifyActivity : AppCompatActivity() {
         val id = auth.currentUser.uid
 
 
-        val key = database.child("posts").push().key
-        if (key == null) {
-            Log.w("MeetMe", "Couldn't get push key for posts")
-            return
-        }
+        database.child("users").child(id).child("name").setValue(name)
+        database.child("users").child(id).child("age").setValue(age)
+        database.child("users").child(id).child("profession").setValue(profession)
+        database.child("users").child(id).child("localisation").setValue(localisation)
+        database.child("users").child(id).child("music").setValue(music)
+        database.child("users").child(id).child("musicauthor").setValue(musicauthor)
+        database.child("users").child(id).child("book").setValue(book)
+        database.child("users").child(id).child("bookauthor").setValue(bookauthor)
+        database.child("users").child(id).child("sport").setValue(sport)
+        database.child("users").child(id).child("dishes").setValue(dishes)
 
-        val utilisateur = Utilisateur(id, name, age ,profession, localisation, music, musicauthor, book, bookauthor, sport, dishes)
-
-        val postValues = utilisateur.toMap()
-
-
-        val childUpdates = hashMapOf<String, Any>(
-            "/posts/$key" to postValues,
-            "/user-posts/$id/$key" to postValues
-        )
-
-        database.updateChildren(childUpdates)
     }
 
 

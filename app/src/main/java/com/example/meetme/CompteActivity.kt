@@ -3,14 +3,15 @@ package com.example.meetme
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
 import com.example.meetme.Constant.Companion.DB_URL
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 
@@ -75,30 +76,40 @@ class CompteActivity : AppCompatActivity() {
         startActivity(intent2)
     }
 
+
+
     private fun utilisateur(){
 
         val userId = auth.currentUser.uid
 
-        val namedata = database.child("users").child(userId).get().result
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val post = dataSnapshot.getValue<Utilisateur>()
+                name.text = post?.name
+                age.text = post?.age
+                profession.text = post?.profession
+                localisation.text = post?.localisation
+                music.text = post?.music
+                musicauthor.text = post?.musicauthor
+                book.text = post?.book
+                bookauthor.text = post?.bookauthor
+                sport.text = post?.sport
+                food.text = post?.dishes
+                desc.text = post?.description
+                cit.text = post?.citation
+                hobbies.text = post?.hobbies
+            }
 
-        val user : Utilisateur
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        database.child("users").child(userId).addValueEventListener(postListener)
 
-        user =namedata?.value as Utilisateur
 
 
-        name.text=user.name
-        age.text=(user.age)
-        profession.text=(user.profession)
-        localisation.text=(user.localisation)
-        music.text=(user.music)
-        musicauthor.text=(user.musicauthor)
-        book.text=(user.book)
-        bookauthor.text=(user.bookauthor)
-        sport.text=(user.sport)
-        food.text=(user.dishes)
-        desc.text=(user.description)
-        cit.text=(user.citation)
-        hobbies.text=(user.hobbies)
     }
 
 }
