@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,10 +20,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.example.meetme.Constant.Companion.DB_URL
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.util.*
-
-
+import kotlin.collections.ArrayList
 
 
 class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
@@ -36,20 +37,28 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_choice)
 
         auth = Firebase.auth
         database = FirebaseDatabase.getInstance(DB_URL).reference
 
-        val compte : FloatingActionButton = findViewById(R.id.compte)
-        compte.setOnClickListener{retournecompte()}
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
-                val proposal : List<Utilisateur> = dataSnapshot.getValue() as List<Utilisateur>
-                if (proposal != null) {
-                    populateRecycler(proposal)
+                val proposal = ArrayList<Utilisateur>()
+                val child  = dataSnapshot.children
+                child.forEach {
+                    val id = auth.currentUser.uid
+                    val key = it.key
+                    if (id != key){
+                        val personne  = it.getValue<Utilisateur>()
+                        personne?.let { it1 -> proposal.add(it1) }
+                    }
+
                 }
+
+                populateRecycler(proposal)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -57,13 +66,12 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
             }
         }
-        database.addValueEventListener(postListener)
-        setContentView(R.layout.activity_choice)
+        database.child("users").addValueEventListener(postListener)
 
         setUpRecyclerView()
 
-        // C'est ici que je dois faire appel à firebase
-
+        val compte : FloatingActionButton = findViewById(R.id.compte)
+        compte.setOnClickListener{retournecompte()}
 
     }
 
@@ -73,16 +81,20 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
     }
 
     private fun setUpRecyclerView() {
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
-        recyclerView.adapter = adapter
+        val recyclerView: RecyclerView=findViewById(R.id.recyclerview)
+        val mLayoutManager = LinearLayoutManager(applicationContext)
+        mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = mLayoutManager
+        recyclerView.adapter=adapter
     }
-    private fun populateRecycler(proposal: List<Utilisateur>) {
-        // ici on récupère dans la base de données un utilisateur à afficher.
+
+    private fun populateRecycler(proposal: ArrayList<Utilisateur>) {
         adapter.setData(proposal)
     }
 
     override fun onUserClicked(utilisateur: Utilisateur) {
         Toast.makeText(this, "You cliked on : ${utilisateur.name}", Toast.LENGTH_LONG).show()
+
         return
     }
 }
@@ -91,12 +103,16 @@ interface ConversationAdapterListener{
     fun onUserClicked(name: Utilisateur)
 }
 
+
+
+
 class ConversationAdapter(private val listener: ChoiceActivity) : RecyclerView.Adapter<ConversationAdapter.ViewHolder>() {
-    private var data: List<Utilisateur> = arrayListOf()
-    fun setData(data: List<Utilisateur>) {
+    private var data: ArrayList<Utilisateur> = ArrayList()
+    fun setData(data: ArrayList<Utilisateur>) {
         this.data = data
         notifyDataSetChanged()
     }
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameliste: TextView = view.findViewById(R.id.nameliste)
         val ageliste: TextView = view.findViewById(R.id.ageliste)
@@ -110,9 +126,11 @@ class ConversationAdapter(private val listener: ChoiceActivity) : RecyclerView.A
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.layout_item, parent, false)
-
         )
+
+
     }
+
     @ExperimentalStdlibApi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pretendant = data[position]
@@ -129,5 +147,3 @@ class ConversationAdapter(private val listener: ChoiceActivity) : RecyclerView.A
     }
 
 }
-
-
