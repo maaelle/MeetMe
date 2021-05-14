@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -93,10 +94,23 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
     }
 
     override fun onUserClicked(utilisateur: Utilisateur) {
-        Toast.makeText(this, "You cliked on : ${utilisateur.name}", Toast.LENGTH_LONG).show()
+        val YES : Button = findViewById(R.id.btn_yes)
+        YES.setOnClickListener{Accept(utilisateur)}
+
 
         return
     }
+
+
+    private fun Accept(utilisateur: Utilisateur) {
+        Toast.makeText(this, "You cliked on : ${utilisateur.name}", Toast.LENGTH_LONG).show()
+        val id = auth.currentUser.uid
+        val pid = utilisateur.id
+
+        pid?.let { database.child("users").child(id).child("correspondant").child(it).setValue(true) }
+    }
+
+
 }
 
 interface ConversationAdapterListener{

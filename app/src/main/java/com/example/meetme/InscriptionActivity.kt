@@ -115,18 +115,20 @@ class InscriptionActivity : AppCompatActivity() {
 
         user?.uid?.let { id ->
             //un ?.let {} is like a  if uid != null
-            writeNewUser(name,id, age, profession, localisation, book, bookauthor, music, musicauthor,sport, dishes, hobbies, citation, description )
+            writeNewUser(name,id, age, profession, localisation, book, bookauthor, music, musicauthor,sport, dishes, hobbies, citation, description)
+
         }
 
 
     }
 
-    private fun writeNewUser( name: String, id: String, age: String, profession: String, localisation: String, book: String, bookauthor: String, music: String, musicauthor: String, sport: String, dishes: String, hobbies: String, citation: String, description: String) {
+    private fun writeNewUser(name: String,id: String,age: String,profession: String,localisation: String,book: String,bookauthor: String,music: String,musicauthor: String,sport: String,dishes: String,hobbies: String,citation: String,description: String) {
 
-        val user=Utilisateur(name,age,profession,localisation,book,bookauthor,music,musicauthor,sport,dishes,hobbies,citation,description)
+        val user=Utilisateur(id,name,age,profession,localisation,book,bookauthor,music,musicauthor,sport,dishes,hobbies,citation,description)
 
         database.child("users").child(id).setValue(user).addOnSuccessListener {
             Log.i(TAG,"Success !")
+            database.child("users").child(id).child("correspondant")
             val intent8=Intent(this,CompteActivity::class.java)
             startActivity(intent8)
         }.addOnCanceledListener {
