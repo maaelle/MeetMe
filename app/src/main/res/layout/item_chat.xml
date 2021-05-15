@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    tools:context=".MainActivity_chat">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#6093BC"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/image_view_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/profil" />
+
+        <TextView
+            android:id="@+id/text_view_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/image_view_1"
+            android:text="Personne1"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/text_view_1_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_1"
+            android:layout_toEndOf="@id/image_view_1"
+            android:text="blabla" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#00FFFFFF" />
+
+</androidx.cardview.widget.CardView>

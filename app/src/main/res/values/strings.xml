@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">MeetMe</string>
+
+    <string-array name="id">
+        <item>Personne1</item>
+        <item>Personne2</item>
+        <item>Personne3</item>
+        <item>Personne4</item>
+        <item>Personne5</item>
+        <item>Personne6</item>
+        <item>Personne7</item>
+        <item>Personne8</item>
+        <item>Personne9</item>
+        <item>Personne10</item>
+        <item>Personne11</item>
+        <item>Personne12</item>
+        <item>Personne13</item>
+    </string-array>
+
+    <string-array name="dernier_message">
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+        <item>blabla</item>
+    </string-array>
+
+    <string-array name="messages">
+        <item>salut</item>
+        <item>hey</item>
+        <item>ok</item>
+    </string-array>
 </resources>
