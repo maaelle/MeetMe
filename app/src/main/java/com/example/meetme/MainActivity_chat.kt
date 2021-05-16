@@ -14,12 +14,14 @@ class MainActivity_chat : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_chat)
 
-        val recycler_view: RecyclerView = findViewById(R.id.recycler_view)
+
+
+        val recycler_view: RecyclerView = findViewById(R.id.recycler_view_chat)
         recycler_view.adapter = Adapter_chat(liste())
         recycler_view.layoutManager = LinearLayoutManager(this)
 
-        val validation: Button = findViewById(R.id.button_id)
-        validation.setOnClickListener{ReturnAccount()}
+        //val validation: Button = findViewById(R.id.button_id)
+        //validation.setOnClickListener{ReturnAccount()}
     }
 
     private fun ReturnAccount() {

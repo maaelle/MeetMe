@@ -20,7 +20,7 @@ class Adapter_121(context:Context, list: ArrayList<Data_121>) : RecyclerView.Ada
     val list: ArrayList<Data_121> = list
 
     private inner class View1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var message: TextView = itemView.findViewById(R.id.textView)
+        var message: TextView = itemView.findViewById(R.id.text121)
         fun bind(position: Int) {
             val recyclerViewModel = list[position]
             message.text = recyclerViewModel.textData
@@ -28,7 +28,7 @@ class Adapter_121(context:Context, list: ArrayList<Data_121>) : RecyclerView.Ada
     }
 
     private inner class View2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var message: TextView = itemView.findViewById(R.id.textView)
+        var message: TextView = itemView.findViewById(R.id.text121)
         fun bind(position: Int) {
             val recyclerViewModel = list[position]
             message.text = recyclerViewModel.textData

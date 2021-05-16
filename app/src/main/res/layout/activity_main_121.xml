@@ -6,7 +6,7 @@
     tools:context=".MainActivity_121">
 
     <LinearLayout
-        android:id="@+id/l1"
+        android:id="@+id/haut"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical"
@@ -19,22 +19,31 @@
             android:layout_marginStart="10dp"
             android:padding="5dp"
             android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text=""
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_121"
-        android:layout_below="@id/l1"
+        android:layout_above="@id/bas"
+        android:layout_below="@id/haut"
         android:padding="4dp"
         android:clipToPadding="false"
-        android:layout_above="@id/r1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem_1="@layout/item_121_p"
         tools:listitem_2="@layout/item_121_me"/>
 
     <RelativeLayout
-        android:id="@+id/r1"
+        android:id="@+id/bas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
@@ -47,8 +56,9 @@
 
         <EditText
             android:id="@+id/boxMessage"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
             android:inputType="text"
@@ -56,9 +66,13 @@
             android:padding="12dp"/>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btnSendMessage"
+            android:src="@drawable/ic_baseline_send_24"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="Sign Up"/>
 
+        </LinearLayout>
 
     </RelativeLayout>
 
