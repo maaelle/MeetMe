@@ -11,7 +11,9 @@ Morgane a codé : - l'interface menu de discussion
                  - le système de discussion
                 
 
-Problème rencontré:
+Problème rencontré: - problèmes avec le passage d'une page à l'autre, erreurs non comprises, mes boutons n'étaient pas reconnus
+                    - problèmes avec les pull depuis Github, ayant besoin de la partie de Maelle pour continuer sur firebase mais j'avais une erreur m'empêchant de m'inscrire une fois sur l'émulateur: "please pass a valid API key"
+                    - grosses difficultés à comprendre l'utilisation de firebase malgré l'étude de différents exemples sur internet, je n'ai pas réussi à aller plus loin avec la database sur ma partie
 
 
 
