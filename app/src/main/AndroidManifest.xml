@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMe">
-        <activity android:name=".CompteActivity"></activity>
+        <activity android:name=".CompteActivity"/>
         <activity android:name=".InscriptionActivity"/>
         <activity android:name=".DescriptionActivity" />
         <activity android:name=".ModifyActivity" />
         <activity android:name=".ChoiceActivity" />
+        <activity android:name=".MainActivity_121" />
+        <activity android:name=".SelectionActivity"/>
+        <activity android:name=".MainActivity_chat"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
