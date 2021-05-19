@@ -128,7 +128,6 @@ class InscriptionActivity : AppCompatActivity() {
 
         database.child("users").child(id).setValue(user).addOnSuccessListener {
             Log.i(TAG,"Success !")
-            database.child("users").child(id).child("correspondant")
             val intent8=Intent(this,CompteActivity::class.java)
             startActivity(intent8)
         }.addOnCanceledListener {

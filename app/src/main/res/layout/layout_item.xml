@@ -39,7 +39,6 @@
                     android:layout_width="269dp"
                     android:layout_height="46dp"
                     android:gravity="right|center_vertical"
-                    android:text="Adam M."
                     android:textColor="#0B0B0B"
                     android:textSize="24sp" />
 
@@ -49,7 +48,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="20"
                     android:textColor="#050505"
                     android:textSize="24sp" />
             </LinearLayout>
@@ -58,15 +56,13 @@
                 android:id="@+id/metier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="server at Starbuck" />
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/localistionliste"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="London,UK" />
+                android:gravity="center" />
 
         </LinearLayout>
 
@@ -90,7 +86,6 @@
                 android:layout_height="71dp"
                 android:background="#343F4B"
                 android:gravity="center"
-                android:text="La beauté est dans les yeux de celui qui regarde."
                 android:textColor="#FFFFFF" />
 
             <Space
@@ -102,7 +97,6 @@
                 android:layout_width="320dp"
                 android:layout_height="87dp"
                 android:background="#343F4B"
-                android:text="Point fort : -ramène le café au lit - réponds au SMS en moins de 24h  Point faible: - ne sais cuisiner que les pâtes -laisse trainer ses chaussettes"
                 android:textColor="#FFFFFF" />
 
             <Space

@@ -106,8 +106,27 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
         Toast.makeText(this, "You cliked on : ${utilisateur.name}", Toast.LENGTH_LONG).show()
         val id = auth.currentUser.uid
         val pid = utilisateur.id
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                val user = dataSnapshot.getValue<Utilisateur>()
+                val nom = user?.name
+                val idconv = utilisateur.name + nom
 
-        pid?.let { database.child("users").child(id).child("correspondant").child(it).setValue(true) }
+                pid?.let { database.child("users").child(id).child("correspondant").child(it).setValue(idconv) }
+                pid?.let { it -> database.child("users").child(it).child("correspondant").child(id).setValue(idconv) }
+                database.child("conversation").child(idconv).child("1").setValue("Bonjour")
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        database.child("users").child(id).addValueEventListener(postListener)
+
+
+
     }
 
 
