@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ChoiceActivity">
+
+
+
+    <LinearLayout
+        android:id="@+id/linearlayoutpret"
+        android:layout_width="411dp"
+        android:layout_height="321dp"
+        android:layout_marginTop="150dp"
+        android:background="#8DBFCF"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameliste"
+                    android:layout_width="269dp"
+                    android:layout_height="46dp"
+                    android:gravity="right|center_vertical"
+                    android:textColor="#0B0B0B"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/ageliste"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#050505"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/metier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/localistionliste"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="227dp"
+            android:background="#48FFF8"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/citationliste"
+                android:layout_width="334dp"
+                android:layout_height="71dp"
+                android:background="#343F4B"
+                android:gravity="center"
+                android:textColor="#FFFFFF" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/descritpionliste"
+                android:layout_width="320dp"
+                android:layout_height="87dp"
+                android:background="#343F4B"
+                android:textColor="#FFFFFF" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_no"
+        android:layout_width="206dp"
+        android:layout_height="59dp"
+        android:fontFamily="@font/chewy"
+        android:text="NO"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="556dp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_yes"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayoutpret"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/btn_yes"
+        android:layout_width="210dp"
+        android:layout_height="59dp"
+        android:fontFamily="@font/chewy"
+        android:text="YES"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_no"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayoutpret"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:layout_editor_absoluteX="208dp"
+        tools:layout_editor_absoluteY="556dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
