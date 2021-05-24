@@ -15,6 +15,9 @@ import com.google.firebase.ktx.Firebase
 
 class DescriptionActivity : AppCompatActivity() {
 
+
+    // même système que le ModifyActivity
+
     private lateinit var database : DatabaseReference
     private lateinit var auth : FirebaseAuth
 

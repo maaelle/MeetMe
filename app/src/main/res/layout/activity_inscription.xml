@@ -8,6 +8,19 @@
     tools:context=".InscriptionActivity">
 
     <TextView
+        android:id="@+id/connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:text="J'ai déjà un compte"
+        android:textColor="#0F2EDD"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create" />
+
+    <TextView
         android:id="@+id/titleregister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

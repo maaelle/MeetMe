@@ -84,7 +84,7 @@ class CompteActivity : AppCompatActivity() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
+                // on récupère les données de l'utilisateur connecté sous forme utilisateur et on les places dans les bons text
                 val post = dataSnapshot.getValue<Utilisateur>()
                 name.text = post?.name
                 age.text = post?.age

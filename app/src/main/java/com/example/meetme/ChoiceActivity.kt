@@ -46,7 +46,9 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
+
+
+                // on récupère toutes les personnes inscrites sauf la personne connectée et on les ajoute dans une liste (proposal)
                 val proposal = ArrayList<Utilisateur>()
                 val child  = dataSnapshot.children
                 child.forEach {
@@ -74,14 +76,22 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
         val compte : FloatingActionButton = findViewById(R.id.compte)
         compte.setOnClickListener{retournecompte()}
 
+        val messagerie : FloatingActionButton = findViewById(R.id.messagerie)
+        messagerie.setOnClickListener{messagerie()}
+
     }
 
-    private fun retournecompte(){
+    private fun messagerie(){ // passer de la liste de personnes au chat
+        val intentmess = Intent(this, MainActivity_chat::class.java)
+        startActivity(intentmess)
+    }
+
+    private fun retournecompte(){  // passer de la liste de personnes au compte perso
         val intcompte = Intent(this, CompteActivity::class.java)
         startActivity(intcompte)
     }
 
-    private fun setUpRecyclerView() {
+    private fun setUpRecyclerView() { // on créer le recycler view avec une orientation horizontal
         val recyclerView: RecyclerView=findViewById(R.id.recyclerview)
         val mLayoutManager = LinearLayoutManager(applicationContext)
         mLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -94,7 +104,7 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
     }
 
     override fun onUserClicked(utilisateur: Utilisateur) {
-        val YES : Button = findViewById(R.id.btn_yes)
+        val YES : Button = findViewById(R.id.btn_yes) // si on clique sur le bouton oui on ajoute la personne à sa liste de personne interessante
         YES.setOnClickListener{Accept(utilisateur)}
 
 
@@ -115,7 +125,7 @@ class ChoiceActivity : AppCompatActivity(), ConversationAdapterListener{
 
                 pid?.let { database.child("users").child(id).child("correspondant").child(it).setValue(idconv) }
                 pid?.let { it -> database.child("users").child(it).child("correspondant").child(id).setValue(idconv) }
-                database.child("conversation").child(idconv).child("1").setValue("Bonjour")
+                database.child("conversation").child(idconv).child(id).setValue("Bonjour")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

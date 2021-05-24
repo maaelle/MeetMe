@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity_121">
+    tools:context=".MainActivity_121"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/haut"
@@ -13,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imgRetour"
+            android:id="@+id/imgRetour2"
             android:layout_width="50dp"
             android:layout_height="32dp"
             android:layout_marginStart="10dp"
@@ -33,16 +35,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_121"
-        android:layout_above="@id/bas"
-        android:layout_below="@id/haut"
-        android:padding="4dp"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="624dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bas"
+        app:layout_constraintBottom_toTopOf="@id/haut"
+        android:clipToPadding="false"
+        android:padding="4dp"
         tools:listitem_1="@layout/item_121_p"
-        tools:listitem_2="@layout/item_121_me"/>
+        tools:listitem_2="@layout/item_121_me" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,6 +78,6 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent6)
     }
 
-    private fun connecter(){
+    private fun connecter(){ // on utilise comme pour InscriptionActivity l'authentification de firebase
         val email = EmailConnect.text.toString()
         val password = PasswordConnect.text.toString()
 

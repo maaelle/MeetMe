@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.meetme.Constant.Companion.DB_URL
 import com.google.firebase.auth.FirebaseAuth
@@ -38,23 +39,30 @@ class InscriptionActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance(DB_URL).reference
 
         findViewById<Button>(R.id.create).setOnClickListener { signUp() }
+        val connect : TextView = findViewById(R.id.connexion)
+        connect.setOnClickListener { connect() }
     }
 
-    private fun signUp() {
+    private fun connect(){
+        val intentconnect = Intent(this, LoginActivity::class.java)
+        startActivity(intentconnect)
+    }
+
+    private fun signUp() { // fonction d'inscription
         val email = tvEmail.text.toString()
         val password = tvpPassword.text.toString()
 
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) { // vérificatio  de mail vide
             this.tvEmail.error = "Email is required"
             return
         }
 
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) { // vérification de password vide
             this.tvpPassword.error = "Password is required"
             return
         }
 
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)  // grâce à authentification firebase on créé le nouvel utilisateur
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -99,6 +107,7 @@ class InscriptionActivity : AppCompatActivity() {
         val intent8 = Intent(this, CompteActivity::class.java)
         startActivity(intent8)
 
+        // on créer une nouvelle personne dans la base de données
         val name = tvName.text.toString()
         val age = ""
         val profession =""

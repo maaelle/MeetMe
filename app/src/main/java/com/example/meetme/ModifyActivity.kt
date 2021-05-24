@@ -39,6 +39,8 @@ class ModifyActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance(DB_URL).reference
 
 
+        // on récupère tous les champs à remplir
+
         name = findViewById(R.id.SelectNom)
         age = findViewById(R.id.SelectAge)
         profession = findViewById(R.id.job)
@@ -69,8 +71,10 @@ class ModifyActivity : AppCompatActivity() {
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
+                //on charge toutes les informations de l'utilisateur connecté depuis la database et on les met sous la forme d'un utilisateur
                 val post = dataSnapshot.getValue<Utilisateur>()
+
+                // on met chaque info dans la bonne case
                 name.setText(post?.name)
                 age.setText(post?.age)
                 profession.setText(post?.profession)
@@ -93,6 +97,7 @@ class ModifyActivity : AppCompatActivity() {
 
     private fun miseajour(){
 
+        // on récupère les valeurs entrées
         val name =name.text.toString()
         val age = age.text.toString()
         val profession = profession.text.toString()
@@ -107,6 +112,7 @@ class ModifyActivity : AppCompatActivity() {
         val id = auth.currentUser.uid
 
 
+        // on met à jour chaque child de la base de données
         database.child("users").child(id).child("name").setValue(name)
         database.child("users").child(id).child("age").setValue(age)
         database.child("users").child(id).child("profession").setValue(profession)
