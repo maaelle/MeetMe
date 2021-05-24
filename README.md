@@ -13,6 +13,7 @@ Morgane a codé : - l'interface menu de discussion
 
 Problème rencontré: - problèmes avec Github, difficultés à l'utiliser sans entraîner des erreurs dans le code. Nous avons aussi eu du mal à l'utiliser de manière optimisée, ma partie étant dépendante de celle de Maelle j'étais parfois bloquée si ça ne marchait pas de son côté (à partir du moment où on a commencé firebase). 
                     - grosses difficultés à comprendre l'utilisation de firebase malgré l'étude de différents exemples sur internet
+                    - un peu de difficultés sur le recyclerview à deux vues qui a pris du temps
 
 
 
