@@ -11,9 +11,8 @@ Morgane a codé : - l'interface menu de discussion
                  - le système de discussion
                 
 
-Problème rencontré: - problèmes avec le passage d'une page à l'autre, erreurs non comprises, mes boutons n'étaient pas reconnus
-                    - problèmes avec les pull depuis Github, ayant besoin de la partie de Maelle pour continuer sur firebase mais j'avais une erreur m'empêchant de m'inscrire une fois sur l'émulateur: "please pass a valid API key"
-                    - grosses difficultés à comprendre l'utilisation de firebase malgré l'étude de différents exemples sur internet, je n'ai pas réussi à aller plus loin avec la database sur ma partie
+Problème rencontré: - problèmes avec Github, difficultés à l'utiliser sans entraîner des erreurs dans le code. Nous avons aussi eu du mal à l'utiliser de manière optimisée, ma partie étant dépendante de celle de Maelle j'étais parfois bloquée si ça ne marchait pas de son côté (à partir du moment où on a commencé firebase). 
+                    - grosses difficultés à comprendre l'utilisation de firebase malgré l'étude de différents exemples sur internet
 
 
 
@@ -24,12 +23,13 @@ Maëlle a codé: - interface de connexion/inscription
                - codage firebase autentification
                - codage firebase realtime database pour enregistrement et lecture des données utilisateurs 
        
-       
-/////////////////////////////Bilan cahier des charges/////////////////////////////////////////////////////////////////////////////////////
             
 Problème rencontré: - difficulté importante avec firebase realtime database
                     - difficulté à récupérer une liste d'utilisateur utilisable pour le recylcerview d'affiche des autres utilisateurs de l'app
                     
+                    
+/////////////////////////////Bilan cahier des charges/////////////////////////////////////////////////////////////////////////////////////
+
 
 Bilan des fonctionnalités: - Créer une fiche identité : terminé
                            - Parcourir une liste d’utilisateur proposé en swipant : en cours
@@ -39,7 +39,7 @@ Bilan des fonctionnalités: - Créer une fiche identité : terminé
 
 Parcourir une liste d’utilisateur proposé en swipant est en cours car la database a été très longue à faire marcher et en conséquence nous a bloqué pour le développement de cette fonctionnalité
 
-La messagerie est en cours car 
+La messagerie est en cours car la partie de discussion 1 à 1 ne fonctionne pas encore au niveau de la database pour les mêmes raisons qu'au dessus
 
 Consulter la photo de l'autre est en cours car cette fonctionnalité est la dernière fonctionnalité sur laquelle nous travaillons, elle a donc été retardé par les autres fonctionnalité
 
